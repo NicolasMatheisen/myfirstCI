@@ -1,0 +1,26 @@
+name: Codecov Upload
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Tests ausführen und Coverage erzeugen
+        run: |
+          # Beispiel für Node.js
+          npm install
+          npm test -- --coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: NicolasMatheisen/myfirstCI
