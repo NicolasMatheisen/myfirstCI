@@ -35,7 +35,6 @@ jobs:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # Nur für private Repos notwendig
           slug: NicolasMatheisen/myfirstCI # Dein GitHub-Repo im Format owner/repo
           files: coverage/lcov.info # Pfad zur lcov-Datei
           flags: unittests # (optional) Flag, z.B. um Testtypen zu unterscheiden
