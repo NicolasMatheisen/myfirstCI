@@ -39,3 +39,5 @@ jobs:
           files: coverage/lcov.info # Pfad zur lcov-Datei
           flags: unittests # (optional) Flag, z.B. um Testtypen zu unterscheiden
           fail_ci_if_error: true # CI schlägt fehl, wenn der Upload fehlschlägt
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
