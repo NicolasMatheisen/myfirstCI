@@ -1,9 +1,13 @@
-/* eslint-disable indent */
-// __tests__/sum.test.js
-function sum(a, b) {
-  return a + b;
-}
+const { calculateSum } = require('../sum');
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+describe('calculateSum', () => {
+	test('summe zweier gültiger Zahlen', () => {
+		expect(calculateSum('2', '3')).toBe(5);
+		expect(calculateSum('2.5', '0.5')).toBeCloseTo(3.0);
+	});
+
+	test('führt zu Fehler bei einer ungültigen Zahl', () => {
+		expect(() => calculateSum('abc', '2')).toThrow('Bitte gültige Zahlen eingeben!');
+		expect(() => calculateSum('1', '')).toThrow('Bitte gültige Zahlen eingeben!');
+	});
 });
