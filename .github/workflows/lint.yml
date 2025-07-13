@@ -1,0 +1,33 @@
+name: Lint & Format Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: ESLint + Prettier
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm' # cached node_modules automatisch
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: ESLint prüfen
+        run: |
+          npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0
+
+      - name: Prettier prüfen
+        run: |
+          npx prettier --check "**/*.{js,jsx,ts,tsx,json,css,md}"
