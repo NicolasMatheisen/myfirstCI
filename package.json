@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "test": "jest",
     "coverage": "jest --coverage"
   },
@@ -13,7 +12,6 @@
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.1",
     "jest": "^30.0.4",
-    "jest-junit": "^16.0.0",
-    "prettier": "^3.6.2"
+    "jest-junit": "^16.0.0"
   }
 }

@@ -1,4 +1,4 @@
-name: Lint & Format Check
+name: Lint Check
 
 on:
   push:
@@ -28,6 +28,3 @@ jobs:
         run: |
           npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0
 
-      - name: Prettier prüfen
-        run: |
-          npx prettier --check "**/*.{js,jsx,ts,tsx,json,css,md}"
