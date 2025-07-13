@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Code aus dem Repository auschecken
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Node.js einrichten
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Passe die Node-Version bei Bedarf an
+
+      # 3. Dependencies installieren
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Tests mit Coverage ausführen
+      - name: Run tests with coverage
+        run: npx jest --coverage
+
+      # 5. Coverage-Bericht an Codecov senden
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # Nur für private Repos notwendig
+          slug: NicolasMatheisen/myfirstCI # Dein GitHub-Repo im Format owner/repo
+          files: coverage/lcov.info # Pfad zur lcov-Datei
+          flags: unittests # (optional) Flag, z.B. um Testtypen zu unterscheiden
+          fail_ci_if_error: true # CI schlägt fehl, wenn der Upload fehlschlägt
